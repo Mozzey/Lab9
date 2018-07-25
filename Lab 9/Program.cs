@@ -82,26 +82,26 @@ namespace Lab9
             };
             List<string> students = new List<string>()
             {
-                { "Michael Cacciano" },
+                { "Alvin Chipmunk" },
                 { "Bob Smith" },
                 { "Barbara Smith" },
+                { "Bill Rogers" },
+                { "Clementine Bauch" },
+                { "Chelsey Dietrich" },
+                { "Clementina DuBuque" },
+                { "Chuck" },
+                { "Dennis Schulist" },
+                { "Ervin Howell" },
+                { "Glenna Reichrt" },
+                { "Holly Barry" },
                 { "John Doe" },
                 { "Jane Doe" },
-                { "Bill Rogers" },
-                { "Holly Barry" },
-                { "Alvin Chipmunk" },
-                { "Simon Chipmunk" },
-                { "Leanne Graham" },
-                { "Ervin Howell" },
-                { "Clementine Bauch" },
-                { "Patricia Lebsack" },
-                { "Chelsey Dietrich" },
-                { "Dennis Schulist" },
                 { "Kurtis Weissnat" },
+                { "Leanne Graham" },
+                { "Michael Cacciano" },
                 { "Nicholas Runolfsdottir" },
-                { "Glenna Reichrt" },
-                { "Clementina DuBuque" },
-                { "Chuck" }
+                { "Patricia Lebsack" },
+                { "Simon Chipmunk" }
             };
             // flag to keep program running in while loop
             bool isRunning = true;
@@ -171,27 +171,30 @@ namespace Lab9
         {
             Console.WriteLine("Enter student's full name");
             var studentName = Console.ReadLine();
+            int studentNameIndex;
             if (!string.IsNullOrWhiteSpace(studentName))
             {
                 students.Insert(students.Count, studentName);
+                students.Sort();
             }
+            studentNameIndex = students.IndexOf(studentName);
             Console.WriteLine("Enter student's hometown");
             var hometown = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(hometown))
             {
-                hometowns.Insert(hometowns.Count, hometown);
+                hometowns.Insert(studentNameIndex, hometown);
             }
             Console.WriteLine("Enter student's favorite food");
             var favFood = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(favFood))
             {
-                favFoods.Insert(favFoods.Count, favFood);
+                favFoods.Insert(studentNameIndex, favFood);
             }
             Console.WriteLine("Enter students favorite color");
             var favColor = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(favColor))
             {
-                favColors.Insert(favColors.Count, favColor);
+                favColors.Insert(studentNameIndex, favColor);
             }
             else
             {
