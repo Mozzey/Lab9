@@ -10,7 +10,7 @@ namespace Lab9
             const string INPUT_CHECK = @"\w\s+";
             // set a constant int to the number of students
             const int NUMBER_OF_STUDENTS = 20;
-            // 2d array of students and their info
+            // lists of students and their information
             List<string> favColors = new List<string>()
             {
                 { "gray" },
@@ -108,24 +108,41 @@ namespace Lab9
 
             while (isRunning)
             {
-                Console.Write("Welcome to our C# class. Which would you like to do? (Add) or (Find) a student? : ");
+                Console.Write("Welcome to our C# class. Which would you like to do? (List), (Find), or (Add) a student? : ");
                 string addOrFind = Console.ReadLine().ToLower();
+                // if the user wants to add a new student
                 if (addOrFind == "add")
                 {
+                    // run AddStudent method
                     AddStudent(students, hometowns, favFoods, favColors);
                 }
+                // if user wants to find a specific student by (index + 1)
                 else if(addOrFind == "find")
                 {
+                    // get and convert the user input into a int 
                     var studentId = GetStudentID(students);
+                    // iterate over the students list
                     for (int i = 0; i < students.Count; i++)
                     {
+                        // i + 1 so that the 0 index value can be called with a 1 instead of a 0
                         if (studentId == i + 1)
                         {
+                            // access with values fo each array with sub[i] and store them to be displayed
                             var hometown = hometowns[i];
                             var favFood = favFoods[i];
                             var favColor = favColors[i];
+                            // seperate method for displaying students name and asking what the user would like to know
                             DisplayStudentInfo(studentId, students[i], hometown, favFood, favColor);
                         }
+                    }
+                }
+                // if user would like to see a list of current students
+                else if (addOrFind == "list")
+                {
+                    // iterate over the students list and display each user next to their corresponding index + 1
+                    for (int i = 0; i < students.Count; i++)
+                    {
+                        Console.WriteLine($"{i + 1}: {students[i]}");
                     }
                 }
                 else
@@ -167,16 +184,23 @@ namespace Lab9
                 DisplayStudentInfo(studentIndex, studentName, hometown, favFood, favColor);
             }
         }
+        // method to add a student and then sort it into alphabetical order
         private static void AddStudent(List<string> students,List<string> hometowns, List<string> favFoods, List<string> favColors)
         {
+            // this long block of code asks a series of questions to add a user to the database
             Console.WriteLine("Enter student's full name");
             var studentName = Console.ReadLine();
+            // this variable is for defined storing the user index after the student name has been requested
             int studentNameIndex;
+            // add a new student to the database and then sort it in alphabetical order
             if (!string.IsNullOrWhiteSpace(studentName))
             {
                 students.Insert(students.Count, studentName);
                 students.Sort();
             }
+            // store the index of the new student after the list of students had been sorted
+            // this variable is used as the index of where to Insert information about the student
+            // so the information matches with the student requested
             studentNameIndex = students.IndexOf(studentName);
             Console.WriteLine("Enter student's hometown");
             var hometown = Console.ReadLine();
@@ -238,6 +262,5 @@ namespace Lab9
                 return false;
             }
         }
-
     }
 }
