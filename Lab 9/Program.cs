@@ -228,7 +228,7 @@ namespace Lab9
         // method to get the user id as well as validate is int, if invalid query calls itself recursively
         private static int GetStudentID(List<string> students)
         {
-            Console.WriteLine("Please enter a student id");
+            Console.WriteLine($"Please enter a student id betwen 1 and {students.Count}");
             var studentIndex = Console.ReadLine();
             // try parse to check if the user input is actually a number then check for the range
             if (int.TryParse(studentIndex, out int studentId) && studentId > 0 && studentId < (students.Count + 1))
